@@ -1,0 +1,416 @@
+/* CSS لتطبيق Robux Generator */
+
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --robux-green: #00b06b;
+    --robux-green-light: rgba(0, 176, 107, 0.1);
+    --robux-gray: #6c757d;
+    --robux-background: #f8f9fa;
+    --robux-error: #dc3545;
+    --robux-shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--robux-background);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    background: linear-gradient(135deg, #ffffff, #f5f5f5);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--robux-shadow);
+    overflow: hidden;
+    position: relative;
+    min-height: 600px;
+}
+
+/* تنسيق الشاشات */
+.screen {
+    display: none;
+    padding: 30px 20px;
+    height: 100%;
+}
+
+.screen.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* تنسيق الرأس */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: var(--robux-gray);
+    font-size: 16px;
+}
+
+/* تنسيق النماذج */
+.form-container {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-container i {
+    position: absolute;
+    left: 15px;
+    color: var(--robux-gray);
+}
+
+.input-container input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: var(--robux-green);
+}
+
+.error-message {
+    color: var(--robux-error);
+    font-size: 14px;
+    margin-top: 5px;
+    min-height: 20px;
+}
+
+/* تنسيق الأزرار */
+.robux-button {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--robux-green);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 176, 107, 0.3);
+}
+
+.robux-button:hover {
+    background-color: #009d5f;
+    transform: translateY(-2px);
+}
+
+.robux-button:active {
+    transform: translateY(0);
+}
+
+.robux-button span {
+    margin-right: 10px;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--robux-gray);
+    font-size: 14px;
+}
+
+/* تنسيق خيارات Robux */
+.robux-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.robux-option {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #eee;
+    transition: all 0.3s;
+}
+
+.robux-option.selected {
+    border-color: var(--robux-green);
+    background-color: var(--robux-green-light);
+    transform: scale(1.05);
+}
+
+.robux-option-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.robux-icon {
+    background-color: var(--robux-green);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.robux-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* تنسيق شاشة المعالجة */
+.processing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px 20px;
+}
+
+.progress-circle-container {
+    width: 120px;
+    height: 120px;
+    background-color: var(--robux-green-light);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.progress-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 8px solid rgba(200, 200, 200, 0.2);
+    border-top: 8px solid var(--robux-green);
+    position: relative;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.progress-percentage {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--robux-green);
+    margin-bottom: 15px;
+}
+
+.status-message {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 30px;
+    min-height: 50px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 16px;
+    background-color: #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--robux-green);
+    width: 0%;
+    border-radius: 8px;
+    transition: width 0.2s;
+    box-shadow: 0 0 10px rgba(0, 176, 107, 0.5);
+}
+
+.warning-message {
+    font-style: italic;
+    color: var(--robux-gray);
+    margin-top: 20px;
+}
+
+/* تنسيق شاشة إكمال العرض */
+.completion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.check-circle {
+    width: 120px;
+    height: 120px;
+    background-color: var(--robux-green-light);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    animation: scaleIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0.8); }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.check-circle i {
+    color: var(--robux-green);
+    font-size: 60px;
+}
+
+.completion-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.user-info-container {
+    width: 100%;
+    background-color: var(--robux-green-light);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(0, 176, 107, 0.2);
+}
+
+.user-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-info-row:last-child {
+    margin-bottom: 0;
+}
+
+.user-info-label {
+    display: flex;
+    align-items: center;
+    color: var(--robux-gray);
+}
+
+.user-info-label i, .robux-icon-small {
+    margin-left: 8px;
+}
+
+.robux-icon-small {
+    background-color: var(--robux-green);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.user-info-value {
+    font-weight: bold;
+}
+
+.robux-value {
+    color: var(--robux-green);
+}
+
+.completion-message {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.completion-message p {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.secondary-message {
+    color: var(--robux-gray);
+    font-size: 16px !important;
+}
+
+/* تأثيرات الانتقال */
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+
+.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+/* تكيف مع الشاشات الصغيرة */
+@media (max-width: 480px) {
+    .app-container {
+        border-radius: 0;
+        min-height: 100vh;
+    }
+    
+    .robux-options {
+        grid-template-columns: 1fr;
+    }
+}
